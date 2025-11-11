@@ -10,7 +10,6 @@ import os
 import numpy as np
 import torch, torchvision
 
-import utils
 from submission import engine
 from submission.fashion_model import Net
 
@@ -31,12 +30,6 @@ def train_fashion_model(fashion_mnist,
     else:
         device = torch.device('cpu')
     print(f"Using device: {device}")
-
-    # We load in data as the raw PIL images - recommended to have a look in visualise_dataset.py! 
-    # To use them for training or inference, we need to transform them to tensors:
-    fashion_mnist.transform = torchvision.transforms.Compose([
-        torchvision.transforms.ToTensor()
-    ])
 
     # Create train-val split
     train_size = int(0.8 * len(fashion_mnist))
@@ -71,11 +64,28 @@ def train_fashion_model(fashion_mnist,
     return model.state_dict()
 
 
+def load_training_data():
+    # Load FashionMNIST dataset
+    # Do not change the dataset or its parameters
+    print("Loading Fashion-MNIST dataset...")
+    fashion_mnist = torchvision.datasets.FashionMNIST(
+        root="./data",
+        train=True,
+        download=True,
+    )
+    # We load in data as the raw PIL images - recommended to have a look in visualise_dataset.py! 
+    # To use them for training or inference, we need to transform them to tensors:
+    fashion_mnist.transform = torchvision.transforms.Compose([
+        torchvision.transforms.ToTensor()
+    ])
+    return fashion_mnist
+
+
 def main():
     # example usage
     # you could create a separate file that calls train_fashion_model with different parameters
     # or modify this as needed to add cross-validation, hyperparameter tuning, etc.
-    fashion_mnist = utils.load_training_data()
+    fashion_mnist = load_training_data()
 
     # TODO: create data splits
 

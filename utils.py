@@ -9,18 +9,6 @@ from torch import nn
 from submission.fashion_training import train_fashion_model
 
 
-def load_training_data():
-    # Load FashionMNIST dataset
-    # Do not change the dataset or its parameters
-    print("Loading Fashion-MNIST dataset...")
-    fashion_mnist = torchvision.datasets.FashionMNIST(
-        root="./data",
-        train=True,
-        download=True,
-    )
-    return fashion_mnist
-
-
 def model_check(model, device):
     """
     Small script that checks if the model as defined can perform a single
@@ -100,8 +88,7 @@ def training_check(model_class, device):
             def __init__(self, images, labels):
                 self.data = images
                 self.targets = labels
-                self.transform = None
-                
+                self.transform = torchvision.transforms.ToTensor()
             def __len__(self):
                 return len(self.data)
             
