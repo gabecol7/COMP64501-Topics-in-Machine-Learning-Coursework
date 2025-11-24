@@ -53,13 +53,65 @@ def train_fashion_model(fashion_mnist,
     criterion.to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
+    #Introduce LR scheduler based on validation loss metric, (Patience set to 2, but occurs after 3 iterations of not improving)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer,
+                                                           mode='min',
+                                                           factor=0.5,
+                                                           patience=2,
+                                                           threshold=0.001,
+                                                           min_lr=learning_rate*1e-2
+                                                           )
+    
+    #Initialise early stopping parameters
+    patience = 5
+    no_improvement_count = 0
+    threshold = 0.001 #Amount validation loss needs to decrease to past best
+    best_val_loss = np.inf
+    best_model_state = None
+    
+    
     # Training loop
     for epoch in range(n_epochs):
         train_loss = engine.train(model, train_loader, criterion, optimizer, device)
-        print(f"Epoch [{epoch + 1}/{n_epochs}], Training Loss: {train_loss:.4f}")
+        print(f"Epoch [{epoch + 1}/{n_epochs}], Training Loss: {train_loss:.4f}. Learning Rate: {optimizer.param_groups[0]['lr']}")
         val_loss, accuracy = engine.eval(model, val_loader, criterion, device)
         print(f"Epoch [{epoch + 1}/{n_epochs}], Val Loss: {val_loss:.4f}, Accuracy: {accuracy:.4f}")
-
+        
+        #Step scheduler based upon the validation loss found
+        scheduler.step(val_loss)
+        
+        #Early stopping implementation
+        if best_model_state == None:
+            
+            #Initialise best validation loss and initial model state
+            best_val_loss = val_loss
+            best_model_state = model.state_dict()
+            no_improvement_count = 0
+            print(best_model_state)
+            
+        elif val_loss < best_val_loss - threshold:
+            
+            #Update new best validation loss and reset counter
+            best_val_loss = val_loss
+            best_model_state = model.state_dict()
+            no_improvement_count = 0
+            
+        else:
+            
+            #Update count for number of iterations without improvement
+            no_improvement_count += 1
+            
+        
+        #End loop early if early stopping criterion occurs
+        if no_improvement_count >= patience:
+            break
+        
+    #Load best model state and print final val loss and accuracy
+    
+    model.load_state_dict(best_model_state)
+    val_loss, accuracy = engine.eval(model, val_loader, criterion, device)
+    print(f"Final Val Loss: {val_loss:.4f}, Final Accuracy: {accuracy:.4f}")
+    
     # Return the model's state_dict (weights) - DO NOT CHANGE THIS
     return model.state_dict()
 
@@ -117,7 +169,7 @@ def main():
 
     # Train model 
     # TODO: this may be done within a loop for hyperparameter search / cross-validation
-    model_weights = train_fashion_model(fashion_mnist, n_epochs=1)
+    model_weights = train_fashion_model(fashion_mnist, n_epochs=30)
 
     # Save model weights
     # However you tune and evaluate your model, make sure to save the final weights 

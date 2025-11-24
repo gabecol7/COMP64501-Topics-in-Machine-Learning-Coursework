@@ -9,7 +9,7 @@ class Net(nn.Module):
     This simple example is a feedforward neural network with one hidden layer.
     Please note that this example model does not achieve the required parameter count (101700).
     """
-    def __init__(self, input_size=28*28, hidden_size=128, num_classes=10):
+    def __init__(self, input_size=28*28, hidden_size=16, num_classes=10):
         super(Net, self).__init__()
 
         # We define the layers of our model here by instantiating layer objects.
