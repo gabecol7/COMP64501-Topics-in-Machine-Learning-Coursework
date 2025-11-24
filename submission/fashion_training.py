@@ -9,16 +9,140 @@ and execute: uv run -m submission.fashion_training
 import os
 import numpy as np
 import torch, torchvision
+import itertools
 
+from copy import deepcopy
 from submission import engine
 from submission.fashion_model import Net
 
 
+def k_fold_split(fashion_mnist, k=5):
+    """
+    Partitions dataset k disjoint folds of the data to be left out of the overall training
+    dataset.
+    """
+
+    #Calculate size of folds as well as create array to store each subset
+    fold_size = int(len(fashion_mnist)//k)
+    fold_tuples = []
+
+    #Use index list to create disjoint partitions
+    dataset_index = np.arange(len(fashion_mnist))
+    np.random.shuffle(dataset_index)
+
+    for fold in range(k):
+
+
+        #Partition the dataset indices into disjoint folds, remove these fold indices from overall indices to determine train indicies
+        val_index = dataset_index[fold*fold_size:(fold+1)*fold_size]
+        train_index = np.delete(dataset_index, np.arange(fold*fold_size - 1, (fold+1)*fold_size - 1))
+
+        #Create fold subsets
+        val_fold = torch.utils.data.Subset(fashion_mnist, val_index)
+        train_fold = torch.utils.data.Subset(fashion_mnist, train_index)
+
+        #Append tuple of training data and validation data 
+        fold_tuples.append((train_fold, val_fold))
+    
+    return fold_tuples
+
+
+def cross_validation(fashion_mnist,
+                     n_epochs,
+                     k=5,
+                     batch_size=4,
+                     learning_rate=0.001,
+                     USE_GPU=True,):
+    """
+    Used to get validation metrics for all k-folds and return a mean result for the
+    cross-validation loss
+    """
+    # Optionally use GPU if available
+    if USE_GPU and torch.cuda.is_available():
+        device = torch.device('cuda')
+    else:
+        device = torch.device('cpu')
+    print(f"Using device: {device}")
+    
+    #Generate a list of tuples for the k-folds
+    fold_tuples = k_fold_split(fashion_mnist, k)
+
+    # Initialize model, loss function, and optimizer
+    model = Net()
+    model.to(device)
+    criterion = torch.nn.CrossEntropyLoss()
+    criterion.to(device)
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+
+        
+    #Initialise early stopping parameters
+    patience = 5
+    no_improvement_count = 0
+    threshold = 1e-4 #Amount validation loss needs to decrease to past best
+    best_val_loss = np.inf
+    best_model_state = None
+    
+    #Initialise list for the val loss at each fold
+
+    val_loss_list = []
+
+    # Training loop
+    for fold in range(len(fold_tuples)):
+
+        for epoch in range(n_epochs):
+            
+            #Start training
+            engine.train(model, fold_tuples[0], criterion, optimizer, device)
+            val_loss, _ = engine.eval(model, fold_tuples[1], criterion, device)
+            
+            #Early stopping implementation
+            if best_model_state == None:
+                
+                #Initialise best validation loss and initial model state
+                best_val_loss = val_loss
+                best_model_state = deepcopy(model.state_dict()) #Deepcopy required to prevent changing with updating model
+                no_improvement_count = 0
+                
+            elif val_loss < best_val_loss - threshold:
+                
+                #Update new best validation loss and reset counter
+                best_val_loss = val_loss
+                best_model_state =  deepcopy(model.state_dict()) #Deepcopy required to prevent changing with updating model
+                no_improvement_count = 0
+                
+            else:
+                
+                #Update count for number of iterations without improvement
+                no_improvement_count += 1
+                
+            
+            #End loop early if early stopping criterion occurs
+            if no_improvement_count >= patience:
+                break
+            
+        #Load best model state and evaluate validation loss
+        model.load_state_dict(best_model_state)
+        val_loss, _ = engine.eval(model, fold_tuples[1], criterion, device)
+        
+        #Append validation loss
+        val_loss_list.append(val_loss)
+
+    return np.mean(val_loss_list)
+
+def hyperparamter_grid_search(fashion_mnist,
+                              batch_size_list,
+                              learning_rate_list,
+                              n_epochs=10):
+    return None
+
+
+
+
 def train_fashion_model(fashion_mnist, 
                         n_epochs, 
-                        batch_size=4,
+                        batch_size=64,
                         learning_rate=0.001,
-                        USE_GPU=False,):
+                        USE_GPU=True,):
     """
     You can modify the contents of this function as needed, but DO NOT CHANGE the arguments,
     the function name, or return values, as this will be called during marking!
@@ -53,19 +177,19 @@ def train_fashion_model(fashion_mnist,
     criterion.to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
-    #Introduce LR scheduler based on validation loss metric, (Patience set to 2, but occurs after 3 iterations of not improving)
+    #Use LR scheduler based on validation loss metric, (Patience set to 2, but occurs after 3 iterations of not improving)
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer,
                                                            mode='min',
                                                            factor=0.5,
                                                            patience=2,
-                                                           threshold=0.001,
+                                                           threshold=1e-4,
                                                            min_lr=learning_rate*1e-2
                                                            )
     
     #Initialise early stopping parameters
     patience = 5
     no_improvement_count = 0
-    threshold = 0.001 #Amount validation loss needs to decrease to past best
+    threshold = 1e-4 #Amount validation loss needs to decrease to past best
     best_val_loss = np.inf
     best_model_state = None
     
@@ -85,15 +209,14 @@ def train_fashion_model(fashion_mnist,
             
             #Initialise best validation loss and initial model state
             best_val_loss = val_loss
-            best_model_state = model.state_dict()
+            best_model_state = deepcopy(model.state_dict()) #Deepcopy required to prevent changing with updating model
             no_improvement_count = 0
-            print(best_model_state)
             
         elif val_loss < best_val_loss - threshold:
             
             #Update new best validation loss and reset counter
             best_val_loss = val_loss
-            best_model_state = model.state_dict()
+            best_model_state =  deepcopy(model.state_dict()) #Deepcopy required to prevent changing with updating model
             no_improvement_count = 0
             
         else:
@@ -127,6 +250,7 @@ def get_transforms(mode='train'):
     if mode == 'train':
         tfs = torchvision.transforms.Compose([
             torchvision.transforms.ToTensor(), # convert images to tensors
+            torchvision.transforms.RandomHorizontalFlip(p=0.5)
         ])
     elif mode == 'eval': # no stochastic transforms, or use p=0
         tfs = torchvision.transforms.Compose([
@@ -169,7 +293,7 @@ def main():
 
     # Train model 
     # TODO: this may be done within a loop for hyperparameter search / cross-validation
-    model_weights = train_fashion_model(fashion_mnist, n_epochs=30)
+    model_weights = train_fashion_model(fashion_mnist, n_epochs=50)
 
     # Save model weights
     # However you tune and evaluate your model, make sure to save the final weights 
