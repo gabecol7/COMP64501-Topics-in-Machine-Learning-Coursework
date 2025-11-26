@@ -8,6 +8,7 @@ dependencies = [
     "docker>=7.1.0",
     "ipykernel>=7.1.0",
     "matplotlib>=3.10.7",
+    "optuna>=4.6.0",
     "pandas>=2.3.3",
     "scikit-learn>=1.7.2",
     "torch>=2.9.0",

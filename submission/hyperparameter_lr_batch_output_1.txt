@@ -1,0 +1,84 @@
+gabe@DESKTOP-EKTA6BG:~/COMP64501-Topics-in-Machine-Learning-Coursework$ uv run -m submission.fashion_hyperparameter_optimisation_lr_batch
+
+[I 2025-11-26 11:41:01,483] A new study created in memory with name: no-name-7422e9a0-cbc2-49c0-9518-3d42580bcbf6
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.4119, Accuracy: 0.8594
+Fold [2/5], Val Loss: 0.7915, Accuracy: 0.7295
+Fold [3/5], Val Loss: 0.2980, Accuracy: 0.8908
+Fold [4/5], Val Loss: 0.3845, Accuracy: 0.8589
+Fold [5/5], Val Loss: 0.2916, Accuracy: 0.8933
+[I 2025-11-26 11:51:50,732] Trial 0 finished with value: 0.43548495338318194 and parameters: {'batch_size': 256, 'lr': 0.0036500660849096605}. Best is trial 0 with value: 0.43548495338318194.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.2934, Accuracy: 0.8964
+Fold [2/5], Val Loss: 0.2997, Accuracy: 0.8895
+Fold [3/5], Val Loss: 0.4841, Accuracy: 0.8273
+Fold [4/5], Val Loss: 0.4155, Accuracy: 0.8580
+Fold [5/5], Val Loss: 0.2634, Accuracy: 0.9048
+[I 2025-11-26 12:15:54,667] Trial 1 finished with value: 0.3512169500629107 and parameters: {'batch_size': 32, 'lr': 0.0003151487993012615}. Best is trial 1 with value: 0.3512169500629107.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.3363, Accuracy: 0.8829
+Fold [2/5], Val Loss: 0.3600, Accuracy: 0.8753
+Fold [3/5], Val Loss: 0.4298, Accuracy: 0.8448
+Fold [4/5], Val Loss: 0.4558, Accuracy: 0.8394
+Fold [5/5], Val Loss: 0.3540, Accuracy: 0.8750
+[I 2025-11-26 12:30:47,846] Trial 2 finished with value: 0.38718015304271214 and parameters: {'batch_size': 256, 'lr': 0.0016864656229357753}. Best is trial 1 with value: 0.3512169500629107.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.3617, Accuracy: 0.8694
+Fold [2/5], Val Loss: 0.2624, Accuracy: 0.9067
+Fold [3/5], Val Loss: 0.2697, Accuracy: 0.9048
+Fold [4/5], Val Loss: 0.2993, Accuracy: 0.8920
+Fold [5/5], Val Loss: 0.2585, Accuracy: 0.9091
+[I 2025-11-26 12:47:33,856] Trial 3 finished with value: 0.29032216368520514 and parameters: {'batch_size': 64, 'lr': 0.0020803027271979117}. Best is trial 3 with value: 0.29032216368520514.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 1.3203, Accuracy: 0.5766
+Fold [2/5], Val Loss: 1.3192, Accuracy: 0.5703
+Fold [3/5], Val Loss: 1.3118, Accuracy: 0.5779
+Fold [4/5], Val Loss: 1.3134, Accuracy: 0.5663
+Fold [5/5], Val Loss: 1.3175, Accuracy: 0.5638
+[I 2025-11-26 13:06:15,523] Trial 4 finished with value: 1.3164379901074348 and parameters: {'batch_size': 128, 'lr': 1.0712544395278828e-05}. Best is trial 3 with value: 0.29032216368520514.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.2879, Accuracy: 0.8997
+Fold [2/5], Val Loss: 0.5110, Accuracy: 0.8083
+Fold [3/5], Val Loss: 0.3107, Accuracy: 0.8871
+Fold [4/5], Val Loss: 0.3020, Accuracy: 0.8919
+Fold [5/5], Val Loss: 0.3117, Accuracy: 0.8888
+[I 2025-11-26 13:20:08,625] Trial 5 finished with value: 0.34464270011224646 and parameters: {'batch_size': 128, 'lr': 0.0019559851824261475}. Best is trial 3 with value: 0.29032216368520514.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.2423, Accuracy: 0.9128
+Fold [2/5], Val Loss: 0.3031, Accuracy: 0.8912
+Fold [3/5], Val Loss: 0.2767, Accuracy: 0.9032
+Fold [4/5], Val Loss: 0.2624, Accuracy: 0.9074
+Fold [5/5], Val Loss: 0.2407, Accuracy: 0.9145
+[I 2025-11-26 13:34:56,761] Trial 6 finished with value: 0.26504834636728813 and parameters: {'batch_size': 256, 'lr': 0.06627383976314818}. Best is trial 6 with value: 0.26504834636728813.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.3643, Accuracy: 0.8673
+Fold [2/5], Val Loss: 0.2658, Accuracy: 0.9085
+Fold [3/5], Val Loss: 0.3896, Accuracy: 0.8631
+Fold [4/5], Val Loss: 0.2870, Accuracy: 0.8972
+Fold [5/5], Val Loss: 0.2421, Accuracy: 0.9127
+[I 2025-11-26 13:46:36,234] Trial 7 finished with value: 0.30975465267262564 and parameters: {'batch_size': 256, 'lr': 0.010215399964524717}. Best is trial 6 with value: 0.26504834636728813.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.3051, Accuracy: 0.8896
+Fold [2/5], Val Loss: 0.6044, Accuracy: 0.7747
+Fold [3/5], Val Loss: 0.5613, Accuracy: 0.8095
+Fold [4/5], Val Loss: 0.4744, Accuracy: 0.8274
+Fold [5/5], Val Loss: 0.3565, Accuracy: 0.8744
+[I 2025-11-26 13:58:01,479] Trial 8 finished with value: 0.46033659659801646 and parameters: {'batch_size': 256, 'lr': 0.0009823628387814966}. Best is trial 6 with value: 0.26504834636728813.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.3732, Accuracy: 0.8627
+Fold [2/5], Val Loss: 0.3668, Accuracy: 0.8710
+Fold [3/5], Val Loss: 0.3672, Accuracy: 0.8678
+Fold [4/5], Val Loss: 0.3759, Accuracy: 0.8672
+Fold [5/5], Val Loss: 0.4237, Accuracy: 0.8502
+[I 2025-11-26 14:13:49,934] Trial 9 finished with value: 0.3813449663050631 and parameters: {'batch_size': 256, 'lr': 0.00028495557840980897}. Best is trial 6 with value: 0.26504834636728813.
+{'batch_size': 256, 'lr': 0.06627383976314818}

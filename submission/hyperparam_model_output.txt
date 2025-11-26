@@ -1,0 +1,258 @@
+^Cgabe@DESKTOP-EKTA6BG:~/COMP64501-Topics-in-Machine-Learning-Coursework$ uv run -m submission.fashion_hyperparameter_optimisation
+
+[I 2025-11-25 22:31:21,785] A new study created in memory with name: no-name-c059bd49-1f05-4cb3-ab2b-f97012b4e9c0
+Loading Fashion-MNIST dataset...
+[I 2025-11-25 22:31:21,915] Trial 0 finished with value: 68.7347116096 and parameters: {'lr': 0.0012825832638091543, 'kernel_size': 3, 'depth': 20, 'dim': 63, 'coarse_depth': 3, 'fc_size': 32}. Best is trial 0 with value: 68.7347116096.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.3415, Accuracy: 0.8892
+Fold [2/5], Val Loss: 2.3056, Accuracy: 0.0990
+Fold [3/5], Val Loss: 2.3047, Accuracy: 0.0983
+Fold [4/5], Val Loss: 2.3040, Accuracy: 0.0980
+Fold [5/5], Val Loss: 2.3066, Accuracy: 0.0990
+[I 2025-11-25 22:43:53,242] Trial 1 finished with value: 2.2518341576335654 and parameters: {'lr': 0.07018425826227898, 'kernel_size': 3, 'depth': 8, 'dim': 24, 'coarse_depth': 3, 'fc_size': 4}. Best is trial 1 with value: 2.2518341576335654.
+Loading Fashion-MNIST dataset...
+[I 2025-11-25 22:43:53,349] Trial 2 finished with value: 7.598843560000001 and parameters: {'lr': 0.047613737971313096, 'kernel_size': 5, 'depth': 14, 'dim': 27, 'coarse_depth': 1, 'fc_size': 8}. Best is trial 1 with value: 2.2518341576335654.
+Loading Fashion-MNIST dataset...
+[I 2025-11-25 22:43:53,441] Trial 3 finished with value: 58.4041379076 and parameters: {'lr': 0.0007349758638260524, 'kernel_size': 5, 'depth': 19, 'dim': 40, 'coarse_depth': 0, 'fc_size': 16}. Best is trial 1 with value: 2.2518341576335654.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.3623, Accuracy: 0.8678
+Fold [2/5], Val Loss: 0.3733, Accuracy: 0.8633
+Fold [3/5], Val Loss: 0.4055, Accuracy: 0.8613
+Fold [4/5], Val Loss: 0.3965, Accuracy: 0.8624
+Fold [5/5], Val Loss: 0.4336, Accuracy: 0.8556
+[I 2025-11-25 22:56:45,766] Trial 4 finished with value: 0.3972801123070111 and parameters: {'lr': 0.034868297016586704, 'kernel_size': 3, 'depth': 7, 'dim': 8, 'coarse_depth': 1, 'fc_size': 32}. Best is trial 4 with value: 0.3972801123070111.
+Loading Fashion-MNIST dataset...
+[I 2025-11-25 22:56:45,864] Trial 5 finished with value: 10.008491504399998 and parameters: {'lr': 0.001371594357842817, 'kernel_size': 5, 'depth': 14, 'dim': 28, 'coarse_depth': 2, 'fc_size': 16}. Best is trial 4 with value: 0.3972801123070111.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.2569, Accuracy: 0.9118
+Fold [2/5], Val Loss: 0.2579, Accuracy: 0.9073
+Fold [3/5], Val Loss: 0.2621, Accuracy: 0.9029
+Fold [4/5], Val Loss: 0.2621, Accuracy: 0.9024
+Fold [5/5], Val Loss: 0.2485, Accuracy: 0.9106
+[I 2025-11-25 23:11:05,910] Trial 6 finished with value: 0.35267871325881556 and parameters: {'lr': 0.02015596713276388, 'kernel_size': 3, 'depth': 7, 'dim': 18, 'coarse_depth': 3, 'fc_size': 32}. Best is trial 6 with value: 0.35267871325881556.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.2092, Accuracy: 0.9247
+Fold [2/5], Val Loss: 0.2163, Accuracy: 0.9227
+Fold [3/5], Val Loss: 0.2274, Accuracy: 0.9154
+Fold [4/5], Val Loss: 0.1995, Accuracy: 0.9267
+Fold [5/5], Val Loss: 0.2053, Accuracy: 0.9263
+[I 2025-11-25 23:24:44,429] Trial 7 finished with value: 0.8722591445576954 and parameters: {'lr': 0.004788871011815531, 'kernel_size': 3, 'depth': 4, 'dim': 35, 'coarse_depth': 3, 'fc_size': 64}. Best is trial 6 with value: 0.35267871325881556.
+Loading Fashion-MNIST dataset...
+[I 2025-11-25 23:24:44,533] Trial 8 finished with value: 2.4193935935999997 and parameters: {'lr': 0.0002759866561570323, 'kernel_size': 3, 'depth': 11, 'dim': 39, 'coarse_depth': 0, 'fc_size': 64}. Best is trial 6 with value: 0.35267871325881556.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.2908, Accuracy: 0.8928
+Fold [2/5], Val Loss: 0.3044, Accuracy: 0.8948
+Fold [3/5], Val Loss: 0.3106, Accuracy: 0.8911
+Fold [4/5], Val Loss: 0.2557, Accuracy: 0.9079
+Fold [5/5], Val Loss: 0.2953, Accuracy: 0.8954
+[I 2025-11-25 23:42:23,284] Trial 9 finished with value: 0.5590007132073985 and parameters: {'lr': 0.02990067667780577, 'kernel_size': 5, 'depth': 10, 'dim': 13, 'coarse_depth': 2, 'fc_size': 8}. Best is trial 6 with value: 0.35267871325881556.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 1.2571, Accuracy: 0.4983
+Fold [2/5], Val Loss: 1.3848, Accuracy: 0.4401
+Fold [3/5], Val Loss: 1.4227, Accuracy: 0.4128
+Fold [4/5], Val Loss: 1.3876, Accuracy: 0.4463
+Fold [5/5], Val Loss: 1.3982, Accuracy: 0.4580
+[I 2025-11-25 23:53:03,452] Trial 10 finished with value: 1.3701132258467537 and parameters: {'lr': 0.008445169939591976, 'kernel_size': 3, 'depth': 1, 'dim': 1, 'coarse_depth': 2, 'fc_size': 32}. Best is trial 6 with value: 0.35267871325881556.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.4212, Accuracy: 0.8587
+Fold [2/5], Val Loss: 0.4688, Accuracy: 0.8309
+Fold [3/5], Val Loss: 0.3955, Accuracy: 0.8565
+Fold [4/5], Val Loss: 0.3615, Accuracy: 0.8734
+Fold [5/5], Val Loss: 0.4127, Accuracy: 0.8546
+[I 2025-11-26 00:05:15,644] Trial 11 finished with value: 0.4147327559187896 and parameters: {'lr': 0.010654073017989965, 'kernel_size': 3, 'depth': 5, 'dim': 9, 'coarse_depth': 1, 'fc_size': 32}. Best is trial 6 with value: 0.35267871325881556.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.3108, Accuracy: 0.8903
+Fold [2/5], Val Loss: 0.2993, Accuracy: 0.8943
+Fold [3/5], Val Loss: 0.3356, Accuracy: 0.8788
+Fold [4/5], Val Loss: 0.3206, Accuracy: 0.8844
+Fold [5/5], Val Loss: 0.2940, Accuracy: 0.8940
+[I 2025-11-26 00:18:23,708] Trial 12 finished with value: 0.3361072570368637 and parameters: {'lr': 0.0210090816685336, 'kernel_size': 3, 'depth': 6, 'dim': 15, 'coarse_depth': 1, 'fc_size': 32}. Best is trial 12 with value: 0.3361072570368637.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.3718, Accuracy: 0.8679
+Fold [2/5], Val Loss: 0.3923, Accuracy: 0.8651
+Fold [3/5], Val Loss: 0.3647, Accuracy: 0.8672
+Fold [4/5], Val Loss: 0.4201, Accuracy: 0.8448
+Fold [5/5], Val Loss: 0.4377, Accuracy: 0.8429
+[I 2025-11-26 00:28:46,053] Trial 13 finished with value: 0.40463262443710746 and parameters: {'lr': 0.013701767486543745, 'kernel_size': 3, 'depth': 1, 'dim': 20, 'coarse_depth': 1, 'fc_size': 32}. Best is trial 12 with value: 0.3361072570368637.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.7354, Accuracy: 0.7501
+Fold [2/5], Val Loss: 0.2981, Accuracy: 0.8966
+Fold [3/5], Val Loss: 0.3954, Accuracy: 0.8581
+Fold [4/5], Val Loss: 0.9572, Accuracy: 0.5723
+Fold [5/5], Val Loss: 0.7319, Accuracy: 0.7632
+[I 2025-11-26 00:41:07,307] Trial 14 finished with value: 0.6499696902380875 and parameters: {'lr': 0.01898361461814993, 'kernel_size': 3, 'depth': 4, 'dim': 17, 'coarse_depth': 2, 'fc_size': 4}. Best is trial 12 with value: 0.3361072570368637.
+Loading Fashion-MNIST dataset...
+[I 2025-11-26 00:41:07,404] Trial 15 finished with value: 10.21505521 and parameters: {'lr': 0.0029436861157012694, 'kernel_size': 3, 'depth': 12, 'dim': 54, 'coarse_depth': 0, 'fc_size': 32}. Best is trial 12 with value: 0.3361072570368637.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.7486, Accuracy: 0.7263
+Fold [2/5], Val Loss: 0.8906, Accuracy: 0.6522
+Fold [3/5], Val Loss: 0.8658, Accuracy: 0.6915
+Fold [4/5], Val Loss: 0.7257, Accuracy: 0.7385
+Fold [5/5], Val Loss: 0.8308, Accuracy: 0.6991
+[I 2025-11-26 00:55:37,715] Trial 16 finished with value: 0.8123642016554321 and parameters: {'lr': 0.09589008053707136, 'kernel_size': 3, 'depth': 7, 'dim': 2, 'coarse_depth': 3, 'fc_size': 32}. Best is trial 12 with value: 0.3361072570368637.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.2806, Accuracy: 0.9004
+Fold [2/5], Val Loss: 0.2734, Accuracy: 0.9011
+Fold [3/5], Val Loss: 0.2720, Accuracy: 0.9033
+Fold [4/5], Val Loss: 0.2763, Accuracy: 0.8968
+Fold [5/5], Val Loss: 0.2433, Accuracy: 0.9173
+[I 2025-11-26 01:05:59,403] Trial 17 finished with value: 0.46477417369912677 and parameters: {'lr': 0.005668125141253914, 'kernel_size': 3, 'depth': 0, 'dim': 48, 'coarse_depth': 2, 'fc_size': 32}. Best is trial 12 with value: 0.3361072570368637.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.4187, Accuracy: 0.8567
+Fold [2/5], Val Loss: 0.9452, Accuracy: 0.6876
+Fold [3/5], Val Loss: 0.4710, Accuracy: 0.8462
+Fold [4/5], Val Loss: 0.7588, Accuracy: 0.7358
+Fold [5/5], Val Loss: 0.3595, Accuracy: 0.8782
+[I 2025-11-26 01:22:06,621] Trial 18 finished with value: 1.2658300235453126 and parameters: {'lr': 0.02619901336619265, 'kernel_size': 5, 'depth': 9, 'dim': 18, 'coarse_depth': 1, 'fc_size': 4}. Best is trial 12 with value: 0.3361072570368637.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.6399, Accuracy: 0.7682
+Fold [2/5], Val Loss: 0.6918, Accuracy: 0.7260
+Fold [3/5], Val Loss: 0.7958, Accuracy: 0.7301
+Fold [4/5], Val Loss: 1.0207, Accuracy: 0.5807
+Fold [5/5], Val Loss: 0.5907, Accuracy: 0.7965
+[I 2025-11-26 01:32:30,547] Trial 19 finished with value: 0.7489422977709227 and parameters: {'lr': 0.003338314355196497, 'kernel_size': 3, 'depth': 5, 'dim': 8, 'coarse_depth': 0, 'fc_size': 16}. Best is trial 12 with value: 0.3361072570368637.
+Loading Fashion-MNIST dataset...
+[I 2025-11-26 01:32:30,642] Trial 20 finished with value: 3.4960772484 and parameters: {'lr': 0.00017961399729604847, 'kernel_size': 3, 'depth': 17, 'dim': 32, 'coarse_depth': 3, 'fc_size': 8}. Best is trial 12 with value: 0.3361072570368637.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.4093, Accuracy: 0.8588
+Fold [2/5], Val Loss: 0.3715, Accuracy: 0.8652
+Fold [3/5], Val Loss: 0.4243, Accuracy: 0.8570
+Fold [4/5], Val Loss: 0.3734, Accuracy: 0.8631
+Fold [5/5], Val Loss: 0.3758, Accuracy: 0.8709
+[I 2025-11-26 01:45:39,744] Trial 21 finished with value: 0.3955042394684138 and parameters: {'lr': 0.04883949857023624, 'kernel_size': 3, 'depth': 7, 'dim': 9, 'coarse_depth': 1, 'fc_size': 32}. Best is trial 12 with value: 0.3361072570368637.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.3833, Accuracy: 0.8698
+Fold [2/5], Val Loss: 0.3923, Accuracy: 0.8610
+Fold [3/5], Val Loss: 0.3649, Accuracy: 0.8730
+Fold [4/5], Val Loss: 0.4142, Accuracy: 0.8524
+Fold [5/5], Val Loss: 0.3920, Accuracy: 0.8615
+[I 2025-11-26 01:57:05,223] Trial 22 finished with value: 0.39448073399775563 and parameters: {'lr': 0.04836990328261858, 'kernel_size': 3, 'depth': 3, 'dim': 13, 'coarse_depth': 1, 'fc_size': 32}. Best is trial 12 with value: 0.3361072570368637.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.2860, Accuracy: 0.8978
+Fold [2/5], Val Loss: 0.3220, Accuracy: 0.8864
+Fold [3/5], Val Loss: 0.2843, Accuracy: 0.8968
+Fold [4/5], Val Loss: 0.3478, Accuracy: 0.8741
+Fold [5/5], Val Loss: 0.2952, Accuracy: 0.8968
+[I 2025-11-26 02:08:25,320] Trial 23 finished with value: 0.3498709197641906 and parameters: {'lr': 0.019577409676436806, 'kernel_size': 3, 'depth': 3, 'dim': 23, 'coarse_depth': 1, 'fc_size': 32}. Best is trial 12 with value: 0.3361072570368637.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.2582, Accuracy: 0.9048
+Fold [2/5], Val Loss: 0.2740, Accuracy: 0.9046
+Fold [3/5], Val Loss: 0.2553, Accuracy: 0.9103
+Fold [4/5], Val Loss: 0.2513, Accuracy: 0.9112
+Fold [5/5], Val Loss: 0.2722, Accuracy: 0.9040
+[I 2025-11-26 02:20:07,959] Trial 24 finished with value: 0.305042043658241 and parameters: {'lr': 0.01605604029504703, 'kernel_size': 3, 'depth': 2, 'dim': 23, 'coarse_depth': 2, 'fc_size': 32}. Best is trial 24 with value: 0.305042043658241.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.2688, Accuracy: 0.8993
+Fold [2/5], Val Loss: 0.2549, Accuracy: 0.9105
+Fold [3/5], Val Loss: 0.2439, Accuracy: 0.9120
+Fold [4/5], Val Loss: 0.2475, Accuracy: 0.9123
+Fold [5/5], Val Loss: 0.2356, Accuracy: 0.9158
+[I 2025-11-26 02:31:50,560] Trial 25 finished with value: 0.3147163185312628 and parameters: {'lr': 0.011516146598223453, 'kernel_size': 3, 'depth': 2, 'dim': 25, 'coarse_depth': 2, 'fc_size': 64}. Best is trial 24 with value: 0.305042043658241.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.2421, Accuracy: 0.9113
+Fold [2/5], Val Loss: 0.2182, Accuracy: 0.9206
+Fold [3/5], Val Loss: 0.2281, Accuracy: 0.9163
+Fold [4/5], Val Loss: 0.2347, Accuracy: 0.9169
+Fold [5/5], Val Loss: 0.2179, Accuracy: 0.9239
+[I 2025-11-26 02:43:41,563] Trial 26 finished with value: 1.108664674911023 and parameters: {'lr': 0.0065017170070456, 'kernel_size': 5, 'depth': 2, 'dim': 30, 'coarse_depth': 2, 'fc_size': 64}. Best is trial 24 with value: 0.305042043658241.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.2817, Accuracy: 0.8999
+Fold [2/5], Val Loss: 0.2860, Accuracy: 0.8948
+Fold [3/5], Val Loss: 0.2778, Accuracy: 0.8958
+Fold [4/5], Val Loss: 0.2614, Accuracy: 0.9056
+Fold [5/5], Val Loss: 0.2855, Accuracy: 0.8954
+[I 2025-11-26 02:53:51,037] Trial 27 finished with value: 0.3513364969732662 and parameters: {'lr': 0.012789287530172742, 'kernel_size': 3, 'depth': 0, 'dim': 36, 'coarse_depth': 2, 'fc_size': 64}. Best is trial 24 with value: 0.305042043658241.
+Loading Fashion-MNIST dataset...
+[I 2025-11-26 02:53:51,121] Trial 28 finished with value: 1.6116302500000002 and parameters: {'lr': 0.0031126109031920967, 'kernel_size': 3, 'depth': 5, 'dim': 44, 'coarse_depth': 2, 'fc_size': 64}. Best is trial 24 with value: 0.305042043658241.
+Loading Fashion-MNIST dataset...
+[I 2025-11-26 02:53:51,203] Trial 29 finished with value: 1.7219213284 and parameters: {'lr': 0.0016857455054475423, 'kernel_size': 3, 'depth': 2, 'dim': 59, 'coarse_depth': 2, 'fc_size': 64}. Best is trial 24 with value: 0.305042043658241.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.2384, Accuracy: 0.9151
+Fold [2/5], Val Loss: 0.2602, Accuracy: 0.9078
+Fold [3/5], Val Loss: 0.2289, Accuracy: 0.9177
+Fold [4/5], Val Loss: 0.2558, Accuracy: 0.9080
+Fold [5/5], Val Loss: 0.2384, Accuracy: 0.9145
+[I 2025-11-26 03:07:12,365] Trial 30 finished with value: 0.4431234205214921 and parameters: {'lr': 0.008949854568633998, 'kernel_size': 3, 'depth': 6, 'dim': 24, 'coarse_depth': 2, 'fc_size': 64}. Best is trial 24 with value: 0.305042043658241.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.3251, Accuracy: 0.8853
+Fold [2/5], Val Loss: 0.2851, Accuracy: 0.8968
+Fold [3/5], Val Loss: 0.3310, Accuracy: 0.8858
+Fold [4/5], Val Loss: 0.2789, Accuracy: 0.9013
+Fold [5/5], Val Loss: 0.3077, Accuracy: 0.8900
+[I 2025-11-26 03:18:14,407] Trial 31 finished with value: 0.3307637526779975 and parameters: {'lr': 0.01751213320259529, 'kernel_size': 3, 'depth': 2, 'dim': 23, 'coarse_depth': 1, 'fc_size': 32}. Best is trial 24 with value: 0.305042043658241.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.3190, Accuracy: 0.8914
+Fold [2/5], Val Loss: 0.2816, Accuracy: 0.9002
+Fold [3/5], Val Loss: 0.3126, Accuracy: 0.8849
+Fold [4/5], Val Loss: 0.3013, Accuracy: 0.8944
+Fold [5/5], Val Loss: 0.3160, Accuracy: 0.8836
+[I 2025-11-26 03:29:18,462] Trial 32 finished with value: 0.3313018783518217 and parameters: {'lr': 0.01457871785041422, 'kernel_size': 3, 'depth': 2, 'dim': 23, 'coarse_depth': 1, 'fc_size': 32}. Best is trial 24 with value: 0.305042043658241.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.3729, Accuracy: 0.8669
+Fold [2/5], Val Loss: 0.4067, Accuracy: 0.8595
+Fold [3/5], Val Loss: 0.4886, Accuracy: 0.8291
+Fold [4/5], Val Loss: 0.5077, Accuracy: 0.8313
+Fold [5/5], Val Loss: 0.4101, Accuracy: 0.8636
+[I 2025-11-26 03:40:40,956] Trial 33 finished with value: 0.4832322229906254 and parameters: {'lr': 0.013582141953057656, 'kernel_size': 3, 'depth': 3, 'dim': 24, 'coarse_depth': 1, 'fc_size': 4}. Best is trial 24 with value: 0.305042043658241.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.3784, Accuracy: 0.8672
+Fold [2/5], Val Loss: 0.4784, Accuracy: 0.8397
+Fold [3/5], Val Loss: 0.8790, Accuracy: 0.6667
+Fold [4/5], Val Loss: 0.9894, Accuracy: 0.6036
+Fold [5/5], Val Loss: 0.9476, Accuracy: 0.6270
+[I 2025-11-26 03:51:01,762] Trial 34 finished with value: 0.753933244250606 and parameters: {'lr': 0.041219283061443526, 'kernel_size': 3, 'depth': 1, 'dim': 27, 'coarse_depth': 1, 'fc_size': 8}. Best is trial 24 with value: 0.305042043658241.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.7835, Accuracy: 0.7119
+Fold [2/5], Val Loss: 2.3039, Accuracy: 0.1004
+Fold [3/5], Val Loss: 2.3036, Accuracy: 0.1035
+Fold [4/5], Val Loss: 2.3063, Accuracy: 0.1027
+Fold [5/5], Val Loss: 2.3039, Accuracy: 0.0998
+[I 2025-11-26 04:01:28,086] Trial 35 finished with value: 2.0568611999823347 and parameters: {'lr': 0.07029742174714293, 'kernel_size': 5, 'depth': 2, 'dim': 21, 'coarse_depth': 0, 'fc_size': 32}. Best is trial 24 with value: 0.305042043658241.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.2836, Accuracy: 0.9006
+Fold [2/5], Val Loss: 0.3626, Accuracy: 0.8702
+Fold [3/5], Val Loss: 0.3424, Accuracy: 0.8801
+Fold [4/5], Val Loss: 0.3178, Accuracy: 0.8874
+Fold [5/5], Val Loss: 0.3396, Accuracy: 0.8772
+[I 2025-11-26 04:11:50,467] Trial 36 finished with value: 0.3635519671498217 and parameters: {'lr': 0.004392282127827634, 'kernel_size': 3, 'depth': 0, 'dim': 31, 'coarse_depth': 2, 'fc_size': 16}. Best is trial 24 with value: 0.305042043658241.
+Loading Fashion-MNIST dataset...
+Using device: cuda
+Fold [1/5], Val Loss: 0.4880, Accuracy: 0.8239
+Fold [2/5], Val Loss: 0.5588, Accuracy: 0.7929
+Fold [3/5], Val Loss: 0.6250, Accuracy: 0.7955
+Fold [4/5], Val Loss: 0.8843, Accuracy: 0.6752
+Fold [5/5], Val Loss: 0.9652, Accuracy: 0.6344
+[I 2025-11-26 04:22:08,782] Trial 37 finished with value: 0.8086937279885184 and parameters: {'lr': 0.0005905437700791432, 'kernel_size': 3, 'depth': 4, 'dim': 26, 'coarse_depth': 1, 'fc_size': 32}. Best is trial 24 with value: 0.305042043658241.
+Loading Fashion-MNIST dataset...
+[I 2025-11-26 04:22:08,868] Trial 38 finished with value: 1.5536625315999997 and parameters: {'lr': 0.002073650772992, 'kernel_size': 5, 'depth': 2, 'dim': 35, 'coarse_depth': 2, 'fc_size': 16}. Best is trial 24 with value: 0.305042043658241.
+Loading Fashion-MNIST dataset...
+[I 2025-11-26 04:22:08,958] Trial 39 finished with value: 2.0849627236 and parameters: {'lr': 0.006870547548170561, 'kernel_size': 3, 'depth': 17, 'dim': 28, 'coarse_depth': 3, 'fc_size': 32}. Best is trial 24 with value: 0.305042043658241.
+{'lr': 0.01605604029504703, 'kernel_size': 3, 'depth': 2, 'dim': 23, 'coarse_depth': 2, 'fc_size': 32}

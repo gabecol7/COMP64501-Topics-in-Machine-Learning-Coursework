@@ -1,0 +1,11 @@
+gabe@DESKTOP-EKTA6BG:~/COMP64501-Topics-in-Machine-Learning-Coursework$ uv run -m submission.fashion_training
+Loading Fashion-MNIST dataset...
+Using device: cuda
+
+Fold [1/5], Val Loss: 0.2213, Accuracy: 0.9217
+Fold [2/5], Val Loss: 0.2273, Accuracy: 0.9175
+Fold [3/5], Val Loss: 0.2216, Accuracy: 0.9234
+Fold [4/5], Val Loss: 0.2205, Accuracy: 0.9205
+Fold [5/5], Val Loss: 0.2159, Accuracy: 0.9194
+Mean Validation Loss: 0.2213, Validation Loss Sample Standard Deviation: 0.0041
+Mean Validation Accuracy: 0.9205, Validation Accuracy Sample Standard Deviation: 0.0022

@@ -8,12 +8,14 @@ and execute: uv run -m submission.fashion_training
 """
 import os
 import numpy as np
+import pandas as pd
 import torch, torchvision
+import optuna
 
 from copy import deepcopy
 from submission import engine
 from submission.fashion_model import Net
-from matplotlib import pyplot as plt
+
 
 def k_fold_split(fashion_mnist, k=5):
     """
@@ -91,7 +93,6 @@ def cross_validation(fashion_mnist,
     #Initialise list for the val loss at each fold
 
     val_loss_list = []
-    accuracy_list = []
 
     # Training loop
     for fold in range(len(fold_tuples)):
@@ -152,151 +153,11 @@ def cross_validation(fashion_mnist,
         
         #Append validation loss
         print(f"Fold [{fold + 1}/{k}], Val Loss: {val_loss:.4f}, Accuracy: {accuracy:.4f}")
-        
         val_loss_list.append(val_loss)
-        accuracy_list.append(accuracy)
 
-    return np.mean(val_loss_list), np.std(val_loss_list, ddof=1), np.mean(accuracy_list), np.std(accuracy_list, ddof = 1)
-
+    return np.mean(val_loss_list), np.std(val_loss_list, ddof=1)
 
 
-def train_fashion_model(fashion_mnist, 
-                        n_epochs, 
-                        batch_size=64,
-                        learning_rate=0.001,
-                        save_figure=False,
-                        USE_GPU=True,):
-    """
-    You can modify the contents of this function as needed, but DO NOT CHANGE the arguments,
-    the function name, or return values, as this will be called during marking!
-    (You can change the default values or add additional keyword arguments if needed.)
-    """
-    # Optionally use GPU if available
-    if USE_GPU and torch.cuda.is_available():
-        device = torch.device('cuda')
-    else:
-        device = torch.device('cpu')
-    print(f"Using device: {device}")
-
-    # Create train-val split
-    train_size = int(0.8 * len(fashion_mnist))
-    val_size = len(fashion_mnist) - train_size
-    train_data, val_data = torch.utils.data.random_split(fashion_mnist, [train_size, val_size])
-
-    # dataloaders
-    train_loader = torch.utils.data.DataLoader(train_data,
-                                             batch_size=batch_size,
-                                             shuffle=True,
-                                             )
-    val_loader = torch.utils.data.DataLoader(val_data,
-                                             batch_size=batch_size,
-                                             shuffle=False,
-                                             )
-
-    # Initialize model, loss function, and optimizer
-    model = Net()
-    model.to(device)
-    criterion = torch.nn.CrossEntropyLoss()
-    criterion.to(device)
-    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
-
-    #Use LR scheduler based on validation loss metric, (Patience set to 2, but occurs after 3 iterations of not improving)
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer,
-                                                           mode='min',
-                                                           factor=0.5,
-                                                           patience=2,
-                                                           threshold=1e-4)
-    
-    #Initialise early stopping parameters
-    patience = 5
-    no_improvement_count = 0
-    threshold = 1e-4 #Amount validation loss needs to decrease to past best
-    best_val_loss = np.inf
-    best_model_state = None
-    
-    
-    #Keep track of train/val loss and accuracy at each epoch if ploting of figures is required
-    if save_figure:
-        train_loss_epoch = []
-        train_accuracy_epoch = []
-        val_loss_epoch = []
-        val_accuracy_epoch = []
-
-    # Training loop
-    for epoch in range(n_epochs):
-        train_loss = engine.train(model, train_loader, criterion, optimizer, device)
-        print(f"Epoch [{epoch + 1}/{n_epochs}], Training Loss: {train_loss:.4f}. Learning Rate: {optimizer.param_groups[0]['lr']}")
-        val_loss, accuracy = engine.eval(model, val_loader, criterion, device)
-        print(f"Epoch [{epoch + 1}/{n_epochs}], Val Loss: {val_loss:.4f}, Accuracy: {accuracy:.4f}")
-        
-        if save_figure:
-            _, train_accuracy = engine.eval(model, train_loader, criterion, device)
-            train_loss_epoch.append(train_loss)
-            train_accuracy_epoch.append(train_accuracy)
-            val_loss_epoch.append(val_loss)
-            val_accuracy_epoch.append(accuracy) #Accuracy is val_accuracy
-
-
-        #Step scheduler based upon the validation loss found
-        scheduler.step(val_loss)
-        
-        #Early stopping implementation
-        if best_model_state == None:
-            
-            #Initialise best validation loss and initial model state
-            best_val_loss = val_loss
-            best_model_state = deepcopy(model.state_dict()) #Deepcopy required to prevent changing with updating model
-            no_improvement_count = 0
-            
-        elif val_loss < best_val_loss - threshold:
-            
-            #Update new best validation loss and reset counter
-            best_val_loss = val_loss
-            best_model_state =  deepcopy(model.state_dict()) #Deepcopy required to prevent changing with updating model
-            no_improvement_count = 0
-            
-        else:
-            
-            #Update count for number of iterations without improvement
-            no_improvement_count += 1
-            
-        
-        #End loop early if early stopping criterion occurs
-        if no_improvement_count >= patience:
-            break
-        
-    #Load best model state and print final val loss and accuracy
-    
-    model.load_state_dict(best_model_state)
-    val_loss, accuracy = engine.eval(model, val_loader, criterion, device)
-    print(f"Final Val Loss: {val_loss:.4f}, Final Accuracy: {accuracy:.4f}")
-    #Plot test and validation loss/accuracy curves if plot_figures is set to True
-    if save_figure:
-        plt.figure(figsize=(16,5))
-        plt.subplot(121)
-
-        plt.plot(np.arange(1,len(train_loss_epoch)+1), np.array(train_loss_epoch), label='Training Loss')
-        plt.plot(np.arange(1,len(val_loss_epoch)+1), np.array(val_loss_epoch), label='Validation Loss')
-
-        plt.title('Cross-entropy Loss vs Epochs')
-        plt.xlabel('Epochs')
-        plt.ylabel('Cross-entropy Loss')
-        plt.legend();
-
-        plt.subplot(122)
-
-        plt.plot(np.arange(1,len(train_accuracy_epoch)+1), np.array(train_accuracy_epoch), label='Training Accuracy')
-        plt.plot(np.arange(1,len(val_accuracy_epoch)+1), np.array(val_accuracy_epoch), label='Validation Accuracy')
-
-        plt.title('Accuracy vs Epochs')
-        plt.xlabel('Epochs')
-        plt.ylabel('Accuracy')
-        plt.legend();
-        plt.tight_layout()
-        plt.savefig('train_curves.png')
-
-    # Return the model's state_dict (weights) - DO NOT CHANGE THIS
-    return model.state_dict()
 
 
 def get_transforms(mode='train'):
@@ -342,44 +203,43 @@ def load_training_data():
     return fashion_mnist
 
 
-def main():
+def objective(trial):
 
-    #Load data
     fashion_mnist = load_training_data()
 
-    #Bool to determine to run cross_validation function or train model
-    cross_val = False
-    train_model = True
-    save_figure = True #Bool to determine to plot loss/accuracy curves
+    # Define hyperparameters
+    batch_size = trial.suggest_categorical("batch_size", [16,32,64,128,256])
+    lr = trial.suggest_float("lr", 1e-5, 1e-1, log=True)
+    kernel_size = 3
+    depth = 2
+    dim = 23
+    coarse_depth = 2
+    fc_size = 32
 
+    #Define model and get number of trainable parameters to use as a penalty for the objectiveq function
+    model=Net(depth=depth, dim=dim, coarse_depth = coarse_depth, fc_size = fc_size, kernel_size=kernel_size)
 
-    #Taken from hyperparameter optimisation
-    batch_size = 32
-    lr = 0.008481069504739685
+    mean_val_loss, _ = cross_validation(fashion_mnist,
+                                        n_epochs=20,
+                                        k=5,
+                                        batch_size=batch_size,
+                                        learning_rate=lr,
+                                        model=model
+    )
+                    
+    return mean_val_loss
 
-    #Run cross-validation 
-    if cross_val:
-        val_loss_mean, val_loss_std, val_accuracy_mean, val_accuracy_std = cross_validation(fashion_mnist,
-                                                                                            n_epochs=50,
-                                                                                            k=5,
-                                                                                            batch_size=batch_size,
-                                                                                            learning_rate=lr,
-                                                                                            model = Net())
+def main():
 
-        print(f'Mean Validation Loss: {val_loss_mean:.4f}, Validation Loss Sample Standard Deviation: {val_loss_std:.4f}')
-        print(f'Mean Validation Accuracy: {val_accuracy_mean:.4f}, Validation Accuracy Sample Standard Deviation: {val_accuracy_std:.4f}')
+    #Create study case for optuna
+    study = optuna.create_study()
+    study.optimize(objective, n_trials=10)
 
-    
-    # Train model 
-    if train_model:
-        model_weights = train_fashion_model(fashion_mnist, n_epochs=100, batch_size = batch_size, learning_rate = lr, save_figure=save_figure)
-        
-        # Save model weights
-        # However you tune and evaluate your model, make sure to save the final weights 
-        # to submission/model_weights.pth before submission!
-        model_save_path = os.path.join('submission', 'model_weights.pth')
-        torch.save(model_weights, f=model_save_path)
+    print(study.best_params) #Print best parameters
 
+    # Create a dataframe from the study and save
+    df = study.trials_dataframe()
+    df.to_csv('LR and Batch Size Hyperparameter Optimisation Results Model 1.csv')
 
 if __name__ == "__main__":
     main()
