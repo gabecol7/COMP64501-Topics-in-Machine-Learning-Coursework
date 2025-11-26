@@ -42,6 +42,15 @@ REQUIRED_FILES = [
 OPTIONAL_FILES = [
     ".dockerignore",
     "submission/engine.py",
+    "train_logs.txt",
+    "cross_evaluation_final_parameters.txt",
+    "hyperparam_model_output.txt",
+    "hyperparameter_lr_batch_output_1.txt",
+    "hyperparameter_lr_batch_output_2.txt",
+    "Hyperparameter Optimisation Results.csv",
+    "LR and Batch Size Hyperparameter Optimisation Results 1.csv",
+    "LR and Batch Size Hyperparameter Optimisation Results 2.csv",
+    "train_curves.png"
     # add any other files you wish to include
 ]
 
