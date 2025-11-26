@@ -372,7 +372,7 @@ def main():
     
     # Train model 
     if train_model:
-        model_weights = train_fashion_model(fashion_mnist, n_epochs=100, batch_size = batch_size, learning_rate = lr, save_figure=save_figure)
+        model_weights = train_fashion_model(fashion_mnist, n_epochs=50, batch_size = batch_size, learning_rate = lr, save_figure=save_figure)
         
         # Save model weights
         # However you tune and evaluate your model, make sure to save the final weights 
